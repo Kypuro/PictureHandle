@@ -1,50 +1,66 @@
-# PictureHandle
+# Picture Handle Studio
 
-## Web UI (NextUI / HeroUI)
-- Backend: `run_backend.ps1` (Python 3.12)
-- Frontend: `cd web` -> `npm install` -> `npm run electron:dev`
-- Build backend: `build_backend.ps1`
-- Build app: `cd web` -> `npm run electron:build`
+Picture Handle Studio is a desktop application built with PySide6 and Python, designed for common image processing tasks. It provides a user-friendly interface for operations such as image resizing, upscaling, and background removal.
 
-桌面小工具：支持图片高清放大、指定尺寸压缩、格式转换，以及一键抠图（rembg）。界面基于 PySide6，风格现代。
+## Features
 
-## 功能
-- 高清放大：高质量（Lanczos）放大 1-6 倍。
-- 尺寸缩放：可设定目标宽/高，支持保持比例或自由缩放。
-- 格式转换：在 PNG/JPEG/WEBP/原格式间切换。
-- 抠图：调用 rembg 移除背景。
-- 批量：列表中可多选或全部处理。
+*   **Image Resizing**: Resize images by specifying exact dimensions or scaling percentage. Includes options to maintain aspect ratio.
+*   **Image Upscaling**: Enhance image resolution using interpolation methods.
+*   **Background Removal**: Automatically remove image backgrounds using the `rembg` library, with support for various models and alpha matting options.
+*   **Image Format Conversion**: Convert images to different formats (PNG, JPEG, WEBP).
+*   **Batch Processing**: Process multiple images at once.
 
-## 环境要求
-- Python 3.10+
-- Windows / macOS / Linux
+## Installation
 
-## 安装
+To set up and run Picture Handle Studio locally, follow these steps:
+
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/Kypuro/PictureHandle.git
+    cd PictureHandle
+    ```
+
+2.  **Create and activate a virtual environment** (recommended):
+    ```bash
+    python -m venv .venv
+    # On Windows
+    .venv\Scripts\activate
+    # On macOS/Linux
+    source .venv/bin/activate
+    ```
+
+3.  **Install dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+    Note: The `rembg` library (a dependency) may require `onnxruntime` which currently does not support Python 3.14+. If you encounter issues, consider using Python 3.12 or earlier.
+
+## Usage
+
+To run the application:
+
 ```bash
-python -m venv .venv
-.\.venv\Scripts\activate  # Windows
-# source .venv/bin/activate # macOS/Linux
-pip install -r requirements.txt
-```
-首次使用抠图功能时，rembg 会自动下载模型，需保持网络可用。
-
-## 运行
-```bash
-python -m src.app
+python src/app.py
 ```
 
-## 使用提示
-- 放大倍数和目标尺寸可同时设置：先放大后再按目标尺寸收敛。
-- 目标宽/高为 0 表示保持原值；勾选“保持比例”以按最小边适配。
-- 输出目录留空则写回原目录，文件名追加 `_processed`。
+## Planned Features (Coming Soon)
 
-## 项目结构
-- `src/app.py`：应用入口。
-- `src/ui/main_window.py`：界面与交互逻辑。
-- `src/processing.py`：图片处理逻辑（放大、缩放、格式转换、抠图）。
-- `src/style.qss`：界面样式。
+*   **Screenshot Dimension Capture**: Easily grab dimensions directly from screen selections for resizing.
+*   **Common Size Presets**: Quick selection for standard image dimensions (e.g., 1920x1080, 1280x720).
+*   **Live Preview**: Real-time preview of resized/processed images before final output.
+*   **Custom Output Directory Selection**: Enhanced UI for easily choosing and managing output folders.
 
-## 后续改进想法
-- 增加进度条与任务队列。
-- 支持实时对比预览。
-- 接入更高质量的超分模型（如 Real-ESRGAN）。
+## Project Structure
+
+- `src/app.py`: Application entry point.
+- `src/ui/main_window.py`: User interface and interaction logic.
+- `src/processing.py`: Image processing logic (upscaling, resizing, format conversion, background removal).
+- `src/style.qss`: UI styles.
+
+## Contributing
+
+Contributions are welcome! Please feel free to open issues or submit pull requests.
+
+## License
+
+[Add License Information Here, e.g., MIT License]
