@@ -1,5 +1,7 @@
 # Picture Handle Studio
 
+[中文说明](README.zh-CN.md)
+
 Picture Handle Studio is a desktop application built with PySide6 and Python, designed for common image processing tasks. It provides a user-friendly interface for operations such as image resizing, upscaling, and background removal.
 
 ## Features
